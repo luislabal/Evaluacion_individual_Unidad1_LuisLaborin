@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package VISTA;
 
 import CONTROLADOR.ControladorPagoLuz;
@@ -21,11 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-/**
- * Vista (MVC) y Observador del modelo.
- *
- * @author luisc
- */
+
 public class ServicioLuz extends javax.swing.JFrame implements Observador {
 
     private final ModeloPagoLuz modelo;
@@ -35,9 +28,7 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
     private static final SimpleDateFormat FECHA = new SimpleDateFormat("dd/MM/yyyy");
     private static final SimpleDateFormat FECHA_HORA = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-    /**
-     * Creates new form ServicioLuz
-     */
+    
     public ServicioLuz() {
         initComponents();
         modelo = new ModeloPagoLuz();
@@ -47,9 +38,7 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
         actualizar();
     }
 
-    // ------------------------------------------------------------------
-    //  Configuración de la pantalla y conexión de eventos
-    // ------------------------------------------------------------------
+  
     private void configurarVista() {
         setTitle("Pago de luz");
         setLocationRelativeTo(null);
@@ -62,7 +51,7 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
         txtDetallesConsumo.setLineWrap(true);
         txtDetallesConsumo.setWrapStyleWord(true);
 
-        // a. Al ir tecleando el número de servicio se filtra la lista
+       
         txtNumeroServicio.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -80,7 +69,7 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
             }
         });
 
-        // b. Seleccionar el cliente (botón o doble clic sobre la lista)
+      
         btnSeleccion.addActionListener(e -> alSeleccionarCliente(jList1.getSelectedIndex()));
         jList1.addMouseListener(new MouseAdapter() {
             @Override
@@ -91,14 +80,12 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
             }
         });
 
-        // d. Pagar con la tarjeta (botón o Enter en el campo de tarjeta)
+    
         btnPagar.addActionListener(e -> alPagar(txtNumeroTarjeta.getText()));
         txtNumeroTarjeta.addActionListener(e -> btnPagar.doClick());
     }
 
-    // ------------------------------------------------------------------
-    //  Eventos de la vista -> Controlador
-    // ------------------------------------------------------------------
+
     private void alIngresarNumeroServicio(String texto) {
         controlador.ingresarNumeroServicio(texto);
     }
@@ -123,33 +110,31 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
         if (!tarjeta.matches("\\d{16}")) {
             JOptionPane.showMessageDialog(this,
                     "El número de tarjeta debe tener 16 dígitos.",
-                    "Tarjeta no válida", JOptionPane.ERROR_MESSAGE);
+                    "Tarjeta no valida", JOptionPane.ERROR_MESSAGE);
             txtNumeroTarjeta.requestFocus();
             return;
         }
         controlador.pagar(tarjeta);
     }
 
-    // ------------------------------------------------------------------
-    //  Observador: el modelo avisa y la vista se redibuja
-    // ------------------------------------------------------------------
+ 
     @Override
     public void actualizar() {
         mostrarClientes(modelo.getClientesEncontrados());
 
         if (modelo.getRecibo() != null) {
             jLabel4.setText("RECIBO DE PAGO:");
-            mostrarRecibo(modelo.getRecibo());          // e. recibo en la misma zona
+            mostrarRecibo(modelo.getRecibo());       
             txtNumeroTarjeta.setText("");
         } else if (modelo.getClienteSeleccionado() != null) {
             jLabel4.setText("DETALLES DEL CONSUMO:");
-            mostrarConsumo(modelo.getConsumo());        // c. datos de consumo
+            mostrarConsumo(modelo.getConsumo());       
         } else {
             jLabel4.setText("DETALLES DEL CONSUMO:");
             txtDetallesConsumo.setText("");
         }
 
-        // d. La tarjeta solo se pide cuando hay un consumo por pagar
+        
         boolean puedePagar = modelo.getConsumo() != null && modelo.getRecibo() == null;
         txtNumeroTarjeta.setEnabled(puedePagar);
         btnPagar.setEnabled(puedePagar);
@@ -206,11 +191,7 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
         txtDetallesConsumo.setCaretPosition(0);
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -340,9 +321,7 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
