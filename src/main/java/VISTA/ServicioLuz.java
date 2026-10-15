@@ -19,9 +19,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 /**
- * 
- *
- * @author LUIS CARLOS LABORIN ALVAREZ
+ * @author luisc
  */
 public class ServicioLuz extends javax.swing.JFrame implements Observador {
 
@@ -42,7 +40,7 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
         actualizar();
     }
 
-  
+
     private void configurarVista() {
         setTitle("Pago de luz");
         setLocationRelativeTo(null);
@@ -55,7 +53,6 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
         txtDetallesConsumo.setLineWrap(true);
         txtDetallesConsumo.setWrapStyleWord(true);
 
-    
         txtNumeroServicio.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -73,7 +70,6 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
             }
         });
 
-      
         btnSeleccion.addActionListener(e -> alSeleccionarCliente(jList1.getSelectedIndex()));
         jList1.addMouseListener(new MouseAdapter() {
             @Override
@@ -88,7 +84,6 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
         txtNumeroTarjeta.addActionListener(e -> btnPagar.doClick());
     }
 
- 
     private void alIngresarNumeroServicio(String texto) {
         controlador.ingresarNumeroServicio(texto);
     }
@@ -105,14 +100,14 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
     private void alPagar(String numeroTarjeta) {
         if (modelo.getConsumo() == null) {
             JOptionPane.showMessageDialog(this,
-                    "Primero seleccione un cliente para ver su consumo.",
+                    "Primero seleccione un cliente para ver su consumo",
                     "Pago de luz", JOptionPane.WARNING_MESSAGE);
             return;
         }
         String tarjeta = numeroTarjeta == null ? "" : numeroTarjeta.replaceAll("[\\s-]", "");
         if (!tarjeta.matches("\\d{16}")) {
             JOptionPane.showMessageDialog(this,
-                    "El numero de tarjeta debe tener 16 digitos",
+                    "El número de tarjeta debe tener 16 dígitos",
                     "Tarjeta no valida", JOptionPane.ERROR_MESSAGE);
             txtNumeroTarjeta.requestFocus();
             return;
@@ -120,21 +115,20 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
         controlador.pagar(tarjeta);
     }
 
+   
     @Override
     public void actualizar() {
         mostrarClientes(modelo.getClientesEncontrados());
 
         if (modelo.getRecibo() != null) {
-            jLabel4.setText("RECIBO DE PAGO:"); 
+            mostrarRecibo(modelo.getRecibo());       
             txtNumeroTarjeta.setText("");
         } else if (modelo.getClienteSeleccionado() != null) {
-            jLabel4.setText("DETALLES DEL CONSUMO:");
-            mostrarConsumo(modelo.getConsumo());        
+            mostrarConsumo(modelo.getConsumo());      
         } else {
-            jLabel4.setText("DETALLES DEL CONSUMO:");
             txtDetallesConsumo.setText("");
         }
-
+     
         boolean puedePagar = modelo.getConsumo() != null && modelo.getRecibo() == null;
         txtNumeroTarjeta.setEnabled(puedePagar);
         btnPagar.setEnabled(puedePagar);
@@ -191,7 +185,7 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
         txtDetallesConsumo.setCaretPosition(0);
     }
 
-   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -321,7 +315,7 @@ public class ServicioLuz extends javax.swing.JFrame implements Observador {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+ 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
