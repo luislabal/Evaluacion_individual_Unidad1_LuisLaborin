@@ -15,7 +15,7 @@ public class Consumo {
     private static final Map<String, Consumo> CONSUMOS = new HashMap<>();
 
     static {
-        CONSUMOS.put("123456789012", new Consumo("Ago-Sep 2026", 350, 612.50, diasDesdeHoy(10)));
+        CONSUMOS.put("00000268492", new Consumo("Ago-Sep 2026", 350, 612.50, diasDesdeHoy(10)));
         CONSUMOS.put("123456781234", new Consumo("Ago-Sep 2026", 220, 385.00, diasDesdeHoy(10)));
         CONSUMOS.put("123450987654", new Consumo("Ago-Sep 2026", 480, 840.00, diasDesdeHoy(8)));
         CONSUMOS.put("987654321098", new Consumo("Ago-Sep 2026", 150, 262.50, diasDesdeHoy(12)));
