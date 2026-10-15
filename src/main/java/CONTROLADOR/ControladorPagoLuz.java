@@ -2,9 +2,7 @@ package CONTROLADOR;
 
 import MODELO.ModeloPagoLuz;
 
-/**
- * Controlador (MVC): recibe los eventos de la vista y actualiza el modelo.
- */
+
 public class ControladorPagoLuz {
 
     private final ModeloPagoLuz modelo;

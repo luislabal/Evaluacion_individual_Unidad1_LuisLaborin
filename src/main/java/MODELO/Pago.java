@@ -14,7 +14,6 @@ public class Pago {
         this.fecha = fecha;
     }
 
-    /** Registra el pago del importe del consumo con la tarjeta indicada. */
     public static Pago registrar(String numeroTarjeta, Consumo consumo) {
         return new Pago(numeroTarjeta, consumo.getImporte(), new Date());
     }
@@ -23,7 +22,6 @@ public class Pago {
         return numeroTarjeta;
     }
 
-    /** Tarjeta con solo los últimos 4 dígitos visibles (para el recibo). */
     public String getTarjetaEnmascarada() {
         String ultimos = numeroTarjeta.length() >= 4
                 ? numeroTarjeta.substring(numeroTarjeta.length() - 4)

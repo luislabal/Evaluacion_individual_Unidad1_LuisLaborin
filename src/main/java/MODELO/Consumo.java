@@ -12,7 +12,6 @@ public class Consumo {
     private final double importe;
     private final Date fechaLimite;
 
-    // Datos de ejemplo: número de servicio -> consumo del periodo
     private static final Map<String, Consumo> CONSUMOS = new HashMap<>();
 
     static {
@@ -38,7 +37,6 @@ public class Consumo {
         return c.getTime();
     }
 
-    /** Devuelve el consumo del cliente o null si no tiene registrado. */
     public static Consumo obtenerPorCliente(Cliente cliente) {
         if (cliente == null) {
             return null;

@@ -21,7 +21,6 @@ public class Recibo {
         this.pago = pago;
     }
 
-    /** Genera el recibo de un pago realizado por un cliente. */
     public static Recibo generar(Cliente cliente, Pago pago) {
         contador++;
         String dia = new SimpleDateFormat("yyyyMMdd").format(pago.getFecha());

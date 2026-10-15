@@ -3,10 +3,6 @@ package MODELO;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Modelo (MVC): guarda el estado y la lógica del pago de luz.
- * Notifica a sus observadores cada vez que cambia.
- */
 public class ModeloPagoLuz extends Sujeto {
 
     private final List<Cliente> clientes = new ArrayList<>();
@@ -17,8 +13,7 @@ public class ModeloPagoLuz extends Sujeto {
     private Recibo recibo;
 
     public ModeloPagoLuz() {
-        // Clientes de ejemplo (deben coincidir con los de Consumo)
-        clientes.add(new Cliente("123456789012", "Juan Pérez López"));
+        clientes.add(new Cliente("00000268492", "LUIS CARLOS LABORIN"));
         clientes.add(new Cliente("123456781234", "María Fernanda Ruiz"));
         clientes.add(new Cliente("123450987654", "Carlos Alberto Soto"));
         clientes.add(new Cliente("987654321098", "Ana Lucía Valenzuela"));
@@ -27,7 +22,7 @@ public class ModeloPagoLuz extends Sujeto {
         clientes.add(new Cliente("456781230001", "José Luis Moreno"));
     }
 
-    /** CU1: filtra los clientes cuyo número de servicio coincide con el texto. */
+  
     public void buscarClientes(String texto) {
         clientesEncontrados = new ArrayList<>();
         for (Cliente c : clientes) {
@@ -35,7 +30,7 @@ public class ModeloPagoLuz extends Sujeto {
                 clientesEncontrados.add(c);
             }
         }
-        // Una nueva búsqueda invalida lo que se había seleccionado/pagado
+      
         clienteSeleccionado = null;
         consumo = null;
         pago = null;
@@ -43,7 +38,7 @@ public class ModeloPagoLuz extends Sujeto {
         notificarObservadores();
     }
 
-    /** CU2 + CU3: selecciona el cliente de la lista y consulta su consumo. */
+  
     public void seleccionarCliente(int indice) {
         if (indice < 0 || indice >= clientesEncontrados.size()) {
             return;
@@ -55,10 +50,9 @@ public class ModeloPagoLuz extends Sujeto {
         notificarObservadores();
     }
 
-    /** CU4 + CU5: registra el pago con la tarjeta y genera el recibo. */
     public void registrarPago(String numeroTarjeta) {
         if (clienteSeleccionado == null || consumo == null || recibo != null) {
-            return; // nada que pagar o ya está pagado
+            return; 
         }
         pago = Pago.registrar(numeroTarjeta, consumo);
         recibo = Recibo.generar(clienteSeleccionado, pago);

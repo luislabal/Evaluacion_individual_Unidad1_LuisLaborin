@@ -3,9 +3,7 @@ package MODELO;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Parte observable del patrón Observer (diagrama MVC).
- */
+
 public class Sujeto {
 
     private final List<Observador> observadores = new ArrayList<>();
@@ -21,7 +19,6 @@ public class Sujeto {
     }
 
     public void notificarObservadores() {
-        // Copia para evitar errores si un observador se quita durante la notificación
         for (Observador o : new ArrayList<>(observadores)) {
             o.actualizar();
         }
